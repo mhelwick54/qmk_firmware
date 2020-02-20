@@ -47,7 +47,12 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_PLAY] = ACTION_TAP_DANCE_DOUBLE(KC_MPLY, KC_MNXT)
 };
 
+/* special rows for Lily58 */
+#define _____________________L_QWERTY_3_L58_________________ KC_LCTL, KC_A,   KC_S,    KC_D,    KC_F,    KC_G
 #define _____________________BOTTOM_ROW_____________________ KC_LALT, KC_LGUI, LOWER, KC_SPC,      KC_ENT,  RAISE,   XXXXXXX, XXXXXXX
+
+#define _____________________L_QWERTY_3_MAC_L58_____________ KC_LGUI, KC_A,   KC_S,    KC_D,    KC_F,    KC_G
+#define _____________________BOTTOM_ROW_MAC_________________ KC_LALT, KC_LCTL, LOWER, KC_SPC,      KC_ENT,  RAISE,   XXXXXXX, XXXXXXX
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -68,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_QWERTY] = LAYOUT_lily58_wrapper( \
   _____________________L_QWERTY_1_____________________,                       _____________________R_QWERTY_1_____________________, \
   _____________________L_QWERTY_2_____________________,                       _____________________R_QWERTY_2_____________________, \
-  _____________________L_QWERTY_3_____________________,                       _____________________R_QWERTY_3_____________________, \
+  _____________________L_QWERTY_3_L58_________________,                       _____________________R_QWERTY_3_____________________, \
   _____________________L_QWERTY_4_____________________, TD(TD_PLAY), RGB_TOG, _____________________R_QWERTY_4_____________________, \
                                         _____________________BOTTOM_ROW_____________________ \
 ),
@@ -90,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_MAC] = LAYOUT_lily58_wrapper( \
    _____________________L_QWERTY_1_____________________,                       _____________________R_QWERTY_1_____________________, \
    _____________________L_QWERTY_2_____________________,                       _____________________R_QWERTY_2_____________________, \
-   _____________________L_QWERTY_3_MAC_________________,                       _____________________R_QWERTY_3_____________________, \
+   _____________________L_QWERTY_3_MAC_L58_____________,                       _____________________R_QWERTY_3_____________________, \
    _____________________L_QWERTY_4_____________________, TD(TD_PLAY), RGB_TOG, _____________________R_QWERTY_4_____________________, \
-                                        _____________________BOTTOM_ROW_____________________ \
+                                        _____________________BOTTOM_ROW_MAC_________________ \
 ),
 /* GAMING
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -202,24 +207,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   /* NUMPAD/RGB
    * ,-----------------------------------------.                    ,-----------------------------------------.
-   * |TG NUM|      |NUMLK |  /   |  *   |  -   |                    |      |      |      |      |      |Reset |
+   * |      |      |      |      |      | BSPC |                    |      |      |      |      |      |Reset |
    * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-   * |      |      |  7   |  8   |  9   |  +   |                    |      |      |      |      |      |      |
+   * |  NUM |      |   7  |   8  |   9  |   *  |                    |      |      |      |      |      |      |
    * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-   * |      |      |  4   |  5   |  6   |      |-------.    ,-------|      |      |RGB ON| HUE+ | SAT+ | VAL+ |
+   * |NUMLK |   /  |  4   |  5   |  6   |   -  |-------.    ,-------|      |      |RGB ON| HUE+ | SAT+ | VAL+ |
    * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
-   * |      |      |  1   |  2   |  3   |      |-------|    |-------|      |      | MODE | HUE- | SAT- | VAL- |
+   * |      |      |  1   |  2   |  3   |   +  |-------|    |-------|      |      | MODE | HUE- | SAT- | VAL- |
    * `-----------------------------------------/       /     \      \-----------------------------------------'
-   *                   | 0    |  .   |      | /Enter  /       \      \  |      |      |      |
+   *                   |      |  .   |   0  | /Enter  /       \      \  |      |      |      |
    *                   |      |      |      |/       /         \      \ |      |      |      |
    *                   `----------------------------'           '------''--------------------'
    */
    [_NUM] = LAYOUT_lily58_wrapper( \
-      _____________________NUMPAD_1________________________,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RESET,   \
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RESET,   \
       _____________________NUMPAD_2________________________,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
       _____________________NUMPAD_3________________________,                   XXXXXXX, XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
       _____________________NUMPAD_4________________________, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, \
-                                 KC_PDOT,   KC_P0, XXXXXXX,  KC_PENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
+                                 XXXXXXX, KC_PDOT,   KC_P0,  KC_PENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
   )
 };
 

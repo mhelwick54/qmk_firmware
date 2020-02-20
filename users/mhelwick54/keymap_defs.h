@@ -21,7 +21,7 @@
 
 /*empty row*/
       /*_______, _______, _______, _______, _______, _______*/
-#define _____________________EMPTY__________________________
+#define _____________________EMPTY__________________________ _______, _______, _______, _______, _______, _______
 
 /*left hand QWERTY*/
       /*  */
@@ -29,7 +29,7 @@
       /*  */
 #define _____________________L_QWERTY_2_____________________ KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T
       /*  */
-#define _____________________L_QWERTY_3_____________________ KC_LCTRL, KC_A,   KC_S,    KC_D,    KC_F,    KC_G
+#define _____________________L_QWERTY_3_____________________ KC_GESC,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G
       /*  */
 #define _____________________L_QWERTY_4_____________________ KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B
       /*  */
@@ -47,13 +47,12 @@
       /*  */
 #define _____________________R_QWERTY_5_____________________ KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
+
 /*
  * special left hand defs for MacOS QWERTY with LCTRL and LGUI swapped
  */
       /*  */
-#define _____________________L_QWERTY_3_MAC_________________ KC_LGUI,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G
-      /*  */
-#define _____________________L_QWERTY_5_MAC_________________ KC_LGUI,  KC_LCTL,KC_LALT, TG(NUM), LOWER,   KC_SPC
+#define _____________________L_QWERTY_5_MAC_________________ KC_LGUI,  KC_LCTL, KC_LALT, TG(NUM), LOWER,   KC_SPC
 
 /*left hand RAISE*/
       /*  */
