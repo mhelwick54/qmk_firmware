@@ -7,7 +7,8 @@
   #include "split_util.h"
 #endif
 #ifdef SSD1306OLED
-  #include "ssd1306.h"
+  //#include "ssd1306.h"
+  #include "oled_driver.h"
 #endif
 
 extern keymap_config_t keymap_config;
@@ -66,15 +67,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------| Play  |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |      | RGUI |
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
  [_QWERTY] = LAYOUT_lily58_wrapper( \
-  _____________________L_QWERTY_1_____________________,                       _____________________R_QWERTY_1_____________________, \
-  _____________________L_QWERTY_2_____________________,                       _____________________R_QWERTY_2_____________________, \
-  _____________________L_QWERTY_3_L58_________________,                       _____________________R_QWERTY_3_____________________, \
-  _____________________L_QWERTY_4_____________________, TD(TD_PLAY), RGB_TOG, _____________________R_QWERTY_4_____________________, \
+   _____________________L_QWERTY_1_____________________,                       _____________________R_QWERTY_1_____________________, \
+   _____________________L_QWERTY_2_____________________,                       _____________________R_QWERTY_2_____________________, \
+   _____________________L_QWERTY_3_L58_________________,                       _____________________R_QWERTY_3_____________________, \
+   _____________________L_QWERTY_4_____________________, TD(TD_PLAY), RGB_TOG, _____________________R_QWERTY_4_____________________, \
                                         _____________________BOTTOM_ROW_____________________ \
 ),
 /* MAC
@@ -87,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------| Play  |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt |LCTRL |LOWER | /Space  /       \Enter \  |RAISE |      | RGUI |
+ *                   | LAlt |LCTRL |LOWER | /Space  /       \Enter \  |RAISE |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -106,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |BCKSP |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------| Play  |    |       |------+------+------+------+------+------|
+ * |------+------+------+------+------+------| Play  |    | LOWER |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt |  A   |GAMALT| /Space  /       \Enter \  |RAISE |   [  |   ]  |
@@ -117,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _____________________L_QWERTY_1_____________________,                       _____________________R_QWERTY_1_____________________, \
    _____________________L_QWERTY_2_____________________,                       _____________________R_QWERTY_2_____________________, \
    _____________________L_QWERTY_3_____________________,                       _____________________R_QWERTY_3_____________________, \
-   _____________________L_QWERTY_4_____________________, TD(TD_PLAY), RGB_TOG, _____________________R_QWERTY_4_____________________, \
+   _____________________L_QWERTY_4_____________________, TD(TD_PLAY), LOWER,   _____________________R_QWERTY_4_____________________, \
                                KC_LALT, KC_A, MO(GAMALT),KC_SPC,      KC_ENT,  RAISE, KC_LBRC, KC_RBRC \
 ),
 /* GAMALT
@@ -135,10 +136,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
  [_GAMALT] = LAYOUT_lily58_wrapper( \
-    XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_Y,    KC_P,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+   XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_Y,    KC_P,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
                                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
 ),
 /* LOWER
@@ -151,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * | Home | LEFT | DOWN |  UP  |RIGHT | End  |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |      | RGUI |
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -172,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |  F7  |  F8  |  F9  | F10  | F11  | F12  |-------|    |-------| Home | LEFT | DOWN |  UP  |RIGHT | End  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |      | RGUI |
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -199,31 +200,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
   [_ADJUST] = LAYOUT_lily58_wrapper( \
-    TG(NUM), DF(QWERTY),DF(MAC),DF(GAMING),XXXXXXX,XXXXXXX,                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    TG(_NUM), DF(_QWERTY),DF(_MAC),DF(_GAME),XXXXXXX,XXXXXXX,               XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
                                _______, _______, _______, _______, _______, _______, _______, _______ \
   ),
-  /* NUMPAD/RGB
-   * ,-----------------------------------------.                    ,-----------------------------------------.
-   * |      |      |      |      |      | BSPC |                    |      |      |      |      |      |Reset |
-   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-   * |  NUM |      |   7  |   8  |   9  |   *  |                    |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-   * |NUMLK |   /  |  4   |  5   |  6   |   -  |-------.    ,-------|      |      |RGB ON| HUE+ | SAT+ | VAL+ |
-   * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
-   * |      |      |  1   |  2   |  3   |   +  |-------|    |-------|      |      | MODE | HUE- | SAT- | VAL- |
-   * `-----------------------------------------/       /     \      \-----------------------------------------'
-   *                   |      |  .   |   0  | /Enter  /       \      \  |      |      |      |
-   *                   |      |      |      |/       /         \      \ |      |      |      |
-   *                   `----------------------------'           '------''--------------------'
-   */
-   [_NUM] = LAYOUT_lily58_wrapper( \
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RESET,   \
-      _____________________NUMPAD_2________________________,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-      _____________________NUMPAD_3________________________,                   XXXXXXX, XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
-      _____________________NUMPAD_4________________________, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, \
+/* NUMPAD/RGB
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |      |      |      |      |      | BSPC |                    |      |      |      |      |      |Reset |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |  NUM |      |   7  |   8  |   9  |   *  |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |NUMLK |   /  |  4   |  5   |  6   |   -  |-------.    ,-------|      |      |RGB ON| HUE+ | SAT+ | VAL+ |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |  1   |  2   |  3   |   +  |-------|    |-------|      |      | MODE | HUE- | SAT- | VAL- |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   |      |  .   |   0  | /Enter  /       \      \  |      |      |      |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+ [_NUM] = LAYOUT_lily58_wrapper( \
+   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RESET,   \
+   _____________________NUMPAD_2________________________,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+   _____________________NUMPAD_3________________________,                   XXXXXXX, XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
+   _____________________NUMPAD_4________________________, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, \
                                  XXXXXXX, KC_PDOT,   KC_P0,  KC_PENT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
   )
 };
@@ -239,14 +240,18 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   }
 }
 
-void matrix_init_user(void) {
+//void matrix_init_user(void) {
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     #ifdef RGBLIGHT_ENABLE
       RGB_current_mode = rgblight_config.mode;
     #endif
     //SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
     #ifdef SSD1306OLED
-        iota_gfx_init(!has_usb());   // turns on the display
+        //iota_gfx_init(!has_usb());   // turns on the display
+        oled_init(rotation);
     #endif
+
+    return rotation;
 }
 
 //Update encoder rotation
@@ -277,36 +282,46 @@ const char *read_keylogs(void);
 // const char *read_timelog(void);
 
 void matrix_scan_user(void) {
-   iota_gfx_task();
+   //iota_gfx_task();
+   oled_task_user();
 }
 
-void matrix_render_user(struct CharacterMatrix *matrix) {
+//void matrix_render_user(struct CharacterMatrix *matrix) {
+void oled_render_user(void) {
   if (is_master) {
     // If you want to change the display of OLED, you need to change here
-    matrix_write_ln(matrix, read_layer_state());
-    //matrix_write_ln(matrix, read_default_state());
-    matrix_write_ln(matrix, read_keylog());
-    matrix_write_ln(matrix, read_keylogs());
+    //matrix_write_ln(matrix, read_layer_state());
+    //matrix_write_ln(matrix, read_keylog());
+    //matrix_write_ln(matrix, read_keylogs());
+    oled_write_ln(read_layer_state(), false);
+    oled_write_ln(read_keylog(), false);
+    oled_write_ln(read_keylogs(), false);
+
     //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
     //matrix_write_ln(matrix, read_host_led_state());
     //matrix_write_ln(matrix, read_timelog());
   } else {
-    matrix_write(matrix, read_logo());
+    //matrix_write(matrix, read_logo());
+
+    oled_write(read_logo(), false);
   }
 }
 
-void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *source) {
+/*void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *source) {
   if (memcmp(dest->display, source->display, sizeof(dest->display))) {
     memcpy(dest->display, source->display, sizeof(dest->display));
     dest->dirty = true;
   }
-}
+}*/
 
 void iota_gfx_task_user(void) {
-  struct CharacterMatrix matrix;
-  matrix_clear(&matrix);
-  matrix_render_user(&matrix);
-  matrix_update(&display, &matrix);
+  //struct CharacterMatrix matrix;
+  //matrix_clear(&matrix);
+  //matrix_render_user(&matrix);
+  //matrix_update(&display, &matrix);
+  oled_clear();
+  oled_render_user();
+  oled_render();
 }
 #endif//SSD1306OLED
 
