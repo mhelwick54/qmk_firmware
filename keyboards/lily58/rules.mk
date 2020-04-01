@@ -29,13 +29,12 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
-OLED_DRIVER_ENABLE = yes
 
 CUSTOM_MATRIX = yes
 
 SRC += i2c.c
 SRC += serial.c
-#SRC += ssd1306.c
+SRC += ssd1306.c
 
 # A workaround until #7089 is merged.
 #   serial.c must not be compiled with the -lto option.
